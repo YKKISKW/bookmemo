@@ -5,3 +5,12 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+Faker::Config.locale=:ja
+
+10.times do
+  Memo.create!(
+    body:Faker::Lorem.sentence
+    )
+end
+
+

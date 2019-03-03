@@ -1,2 +1,17 @@
-<h1>Memos#index</h1>
-<p>Find me in app/views/memos/index.html.erb</p>
+<table class="table">
+  <thead>
+    <tr>
+      <th class="h4">memo</th>
+    </tr>
+  </thead>
+  <tbody>
+    <%@memos.each do|memo|%>
+    <tr>
+      <td>
+      <%=memo.body%>
+      </td>
+    </tr>
+    <%end%>
+  </tbody>
+</table>
+
