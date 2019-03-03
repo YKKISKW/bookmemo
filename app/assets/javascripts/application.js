@@ -13,4 +13,8 @@
 //= require rails-ujs
 //= require activestorage
 //= require turbolinks
+//=requiretether
+//=requirejquery3
+//=requirepopper
+//=requirebootstrap
 //= require_tree .
