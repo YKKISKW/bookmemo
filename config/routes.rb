@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
   devise_for :users
   root 'books#index'
-  resources :books, only: [:index, :new, :create]
+  resources :books, only: [:index, :new, :create] do
+    resources :memos
+  end
   # get 'books/new'
   get 'memos/index'
   # post 'line/callback'
