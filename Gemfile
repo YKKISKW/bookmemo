@@ -41,6 +41,7 @@ gem 'jquery-rails'
 gem 'popper_js','~>1.14.5'
 
 gem 'line-bot-api'
+gem 'devise'
 
 
 group :development, :test do
