@@ -43,6 +43,9 @@ gem 'popper_js','~>1.14.5'
 gem 'line-bot-api'
 gem 'devise'
 gem "font-awesome-rails"
+gem 'omniauth-line'
+gem 'dotenv-rails'
+
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

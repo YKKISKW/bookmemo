@@ -12,6 +12,7 @@
 
 ActiveRecord::Schema.define(version: 2019_03_07_075300) do
 
+
   create_table "book_shelves", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "book_id"
     t.bigint "user_id"
