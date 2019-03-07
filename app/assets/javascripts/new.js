@@ -4,7 +4,7 @@ $(document).on('turbolinks:load' , function(){
     function appendBook(book) {
        var html = `<div class="col s4 offset-s8 book-info">
                     <div class="card blue-grey darken-1">
-                      <div class="card-content white-text" id="${book.volumeInfo.industryIdentifiers[0].identifier}">
+                      <div class="card-content white-text" id="${book.volumeInfo.industryIdentifiers[1].identifier}">
                         <span class="card-title">${book.volumeInfo.title}</span>
                         <p>${book.volumeInfo.description}</p>
                         <a class="book-info__btn btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">add</i></a>
@@ -20,7 +20,7 @@ $(document).on('turbolinks:load' , function(){
 
   $("#book-search").on("click",function(){
     var input = $(".books-input").val();
-    var url = "https://www.googleapis.com/books/v1/volumes?q=白夜行"
+    var url = "https://www.googleapis.com/books/v1/volumes?q=" + input
     $.getJSON(url, function(booksinfo) {
       $(".book-search-result").empty();
       if (booksinfo.length !== 0 &&  input.length !== 0){
@@ -42,7 +42,7 @@ $(document).on('turbolinks:load' , function(){
       data: {
         book: {
           title : title,
-          isbn13 : 2222,
+          isbn13 : isbn,
           }
         },
       dataType: 'json'
