@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_03_06_061747) do
+ActiveRecord::Schema.define(version: 2019_03_07_075300) do
 
   create_table "book_shelves", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "book_id"
@@ -22,8 +22,8 @@ ActiveRecord::Schema.define(version: 2019_03_06_061747) do
   end
 
   create_table "books", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.integer "isbn13"
-    t.integer "isbn10"
+    t.bigint "isbn13"
+    t.bigint "isbn10"
     t.text "title", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -49,6 +49,8 @@ ActiveRecord::Schema.define(version: 2019_03_06_061747) do
     t.datetime "remember_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "provider"
+    t.string "uid"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["name"], name: "index_users_on_name"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
