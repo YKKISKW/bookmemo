@@ -21,20 +21,6 @@ $(document).on('turbolinks:load' , function(){
                     </div>
                   </div>`
 
-                  // <div class="col s6 offset-s3 book-info">
-                  //   <img src="${book.volumeInfo.imageLinks.thumbnail}" alt="${book.volumeInfo.title}" width="200" height="300">
-                  //   <div class="card blue-grey darken-1">
-                  //     <div class="card-content white-text" id="${book.volumeInfo.industryIdentifiers[1].identifier}">
-                  //       <span class="card-title">${book.volumeInfo.title}</span>
-                  //       <p>${book.volumeInfo.description}</p>
-                  //       <a class="book-info__btn btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">add</i></a>
-                  //     </div>
-                  //     <div class="card-action">
-                  //       <a href="#">This is a link</a>
-                  //       <a href="#">This is a link</a>
-                  //     </div>
-                  //   </div>
-                  // </div>`
        search_list.append(html);
       }
 
