@@ -1,3 +1,37 @@
 // Place all the styles related to the books controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+  .book-info{
+    display: flex;
+    &__img{
+      margin: 0 auto;
+    }
+    &__title{
+      font-size: 20px;
+      margin: 5px 20px;
+      display: none;
+    }
+    &__author{
+      display: none;
+    }
+  }
+
+  .bg_test {
+      width: 100vw;
+      height: 100vh;
+      text-align:  center;    /* 文字中央寄せ */
+      // padding:  150px;        /* 余白指定 */
+      // border: solid 2px;/* 枠線指定 */
+      background-image:url(book2.jpg);
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-attachment: fixed;
+    // .bg_test-text {
+    //     border:  solid 1px;                             /* 枠線指定 */
+    //     display:  inline-block;                         /* インラインブロックにする */
+    //     padding: 10px 20px;                             /* 余白指定 */
+    //     background-color: rgba(255, 255, 255, 0.7);     /* 背景色指定 */
+    //   }
+  }
+
