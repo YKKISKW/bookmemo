@@ -2,16 +2,44 @@ $(document).on('turbolinks:load' , function(){
     var search_list = $("#book-search-result")
 
     function appendBook(book) {
-       var html = `<div class="col s4 offset-s8 book-info">
-                    <div class="card blue-grey darken-1">
-                      <div class="card-content white-text" id="${book.volumeInfo.industryIdentifiers[1].identifier}">
-                        <span class="card-title">${book.volumeInfo.title}</span>
-                        <p>${book.volumeInfo.description}</p>
-                        <a class="book-info__btn btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">add</i></a>
+       var html = `<div class="col s6 offset-s6">
+                    <div class="card horizontal book-info">
+                        <div class="card-image book-info__img">
+                          <img src="${book.volumeInfo.imageLinks.thumbnail}" alt="${book.volumeInfo.title}">
+                        </div>
+                      <div class="card-stacked">
+                        <div class="card-content">
+                          <div class="book-info__title">${book.volumeInfo.title}</div>
+                          <div class="book-info__author">${book.volumeInfo.authors}</div>
+                          <p>${book.volumeInfo.description}</p>
+                          <a class="book-info__btn btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">add</i></a>
+                        </div>
+                        <div class="card-action">
+                          <a href="${book.volumeInfo.infoLink}">詳細を見る</a>
+                        </div>
                       </div>
-                      <div class="card-action">
-                        <a href="#">This is a link</a>
-                        <a href="#">This is a link</a>
+                    </div>
+                  </div>`
+
+       search_list.append(html);
+      }
+
+      function appendBooknotimage(book) {
+               var html = `<div class="col s6 offset-s6">
+                    <div class="card horizontal book-info">
+                        <div class="card-image book-info__img">
+                          <img src="" alt="${book.volumeInfo.title}">
+                        </div>
+                      <div class="card-stacked">
+                        <div class="card-content">
+                          <div class="book-info__title">${book.volumeInfo.title}</div>
+                          <div class="book-info__author">${book.volumeInfo.authors}</div>
+                          <p>${book.volumeInfo.description}</p>
+                          <a class="book-info__btn btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">add</i></a>
+                        </div>
+                        <div class="card-action">
+                          <a href="${book.volumeInfo.infoLink}">詳細を見る</a>
+                        </div>
                       </div>
                     </div>
                   </div>`
@@ -26,7 +54,11 @@ $(document).on('turbolinks:load' , function(){
       if (booksinfo.length !== 0 &&  input.length !== 0){
         var books = booksinfo.items
         books.forEach(function(book){
+          if (book.volumeInfo.imageLinks === undefined){
+          appendBooknotimage(book)
+          } else {
           appendBook(book)
+          }
        });
       }
     });
