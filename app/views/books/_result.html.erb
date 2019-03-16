@@ -1,13 +1,13 @@
 <% @results.each do |result| %>
-  <% if result["volumeInfo"]["imageLinks"]%>
-    <% img = result["volumeInfo"]["imageLinks"]["thumbnail"] %>
+  <% if result["volume_info"]["image_links"]%>
+    <% img = result["volume_info"]["image_links"]["thumbnail"] %>
   <% else %>
     <% img = "" %>
   <% end %>
 
-  <% if result["volumeInfo"]["industryIdentifiers"]%>
-    <% if result["volumeInfo"]["industryIdentifiers"][0] %>
-      <% isbn = result["volumeInfo"]["industryIdentifiers"][0]["identifier"] %>
+  <% if result["volume_info"]["industry_identifiers"]%>
+    <% if result["volume_info"]["industry_identifiers"][0] %>
+      <% isbn = result["volume_info"]["industry_identifiers"][0]["identifier"] %>
     <% end %>
   <% else %>
     <% isbn = 0 %>
@@ -15,14 +15,14 @@
   <div class="col s6 offset-s6">
     <div class="card horizontal book-info">
         <div class="card-image book-info__img">
-          <img src="<%= img %>" alt="<%= result["volumeInfo"]["title"] %>">
+          <img src="<%= img %>" alt="<%= result["volume_info"]["title"] %>">
         </div>
       <div class="card-stacked">
         <div class="card-content">
-          <div class="book-info__title"><%= result["volumeInfo"]["title"]%></div>
-          <div class="book-info__author"><%= result["volumeInfo"]["authors"]%></div>
+          <div class="book-info__title"><%= result["volume_info"]["title"]%></div>
+          <div class="book-info__author"><%= result["volume_info"]["authors"]%></div>
           <div class="book-info__isbn10"><%= isbn %></div>
-          <p><%= result["volumeInfo"]["description"] %></p>
+          <p><%= result["volume_info"]["description"] %></p>
 <!--           <a class="book-info__btn btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">add</i></a> -->
           <%= link_to "/books" ,class: "book-info__btn" ,method: :post, remote: true do %>
             <div class="btn-floating halfway-fab waves-effect waves-light red">
@@ -31,7 +31,7 @@
           <% end %>
         </div>
         <div class="card-action">
-          <a href="<%= result["volumeInfo"]["infoLink"]%>">詳細を見る</a>
+          <a href="<%= result["volume_info"]["info_link"]%>">詳細を見る</a>
         </div>
       </div>
     </div>
