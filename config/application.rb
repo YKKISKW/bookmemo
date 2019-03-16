@@ -10,6 +10,7 @@ module Bookmemo
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 5.2
+    config.paths.add 'lib', eager_load: true
     Rails.application.config.assets.paths << Rails.root.join('vendor', 'fonts')
     Rails.application.config.assets.paths << Rails.root.join('vendor', 'images')
     Rails.application.config.assets.paths << Rails.root.join('vendor', 'javascripts')

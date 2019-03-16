@@ -1,20 +1,13 @@
-class BooksController < ApplicationController
   require 'net/http'
   require 'uri'
-  require "addressable/uri"
   require 'json'
 
-  # protect_from_forgery except: :create
-
-  def index
-  end
-
-
-  def new(retry_count = 10)
+class Books
+  def search_area(form_word, retry_count = 10)
     raise ArgumentError, 'too many HTTP redirects' if retry_count == 0
 
-    uri = Addressable::URI.parse("https://www.googleapis.com/books/v1/volumes?q=#{params[:form_word]}")
-    # results = []
+    uri = Addressable::URI.parse("https://www.googleapis.com/books/v1/volumes?q=#{form_word}")
+
     begin
       response = Net::HTTP.start(uri.host, uri.port, use_ssl: uri.scheme == 'https') do |http|
         http.open_timeout = 5
@@ -28,7 +21,7 @@ class BooksController < ApplicationController
           if json['results_returned'] == 0
             nil
           else
-            @results = json["items"]
+            json
           end
 
         when Net::HTTPRedirection
@@ -43,30 +36,5 @@ class BooksController < ApplicationController
       Rails.logger.error(e.message)
       raise e
     end
-    # @results = results
-    respond_to do |format|
-      format.html
-      format.js
-    end
-
-  end
-
-  def show
-  end
-
-  def create
-    book = Book.where(book_params)
-    if book.exists?
-        BookShelf.create(user_id:current_user.id,book_id:book.ids[0])
-    else
-        Book.create(book_params.merge(user_ids:[current_user.id]))
-    end
-  end
-
-  private
-
-  def book_params
-    params.require(:book).permit(:title,:isbn13)
-    # .merge(user_ids:[current_user.id])
   end
 end
