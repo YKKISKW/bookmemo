@@ -1,2 +1,37 @@
-<div class="bg_test">
+<div class="row">
+    <div class="col s12">
+      <div class="row">
+        <div class="input-field col s12">
+            <%= form_with url: "/books/new" , :method => 'get' do |f| %>
+              <%= f.text_field :form_word ,class: "autocomplete books-input", placeholder: 'タイトル・著者で検索' %>
+                  <%= button_tag type: "submit" do %>
+                  <i class="material-icons">search</i>
+              <% end %>
+            <% end %>
+        </div>
+      </div>
+    </div>
 </div>
+<div class="row" id="book-search-result">
+<!--   <div class="col s4 offset-s8 book-info">
+    <p class="header">${book.volumeInfo.title}</p>
+      <div class="card horizontal">
+        <div class="card-image">
+          <img src="${book.volumeInfo.imageLinks.thumbnail}" alt="${book.volumeInfo.title}">
+        </div>
+        <div class="card-stacked">
+          <div class="card-content">
+            <p>${book.volumeInfo.description}</p>
+            <%= link_to new_book_path  do %>
+              <div class ="book-info__btn btn-floating halfway-fab waves-effect waves-light red">
+                <i class="material-icons">add</i>
+              </div>
+            <%end%>
+          </div>
+          <div class="card-action">
+            <a href="#">This is a link</a>
+          </div>
+      </div>
+    </div>
+  </div>
+ --></div>

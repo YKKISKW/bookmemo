@@ -1,0 +1,40 @@
+<% @results.each do |result| %>
+  <% if result["volumeInfo"]["imageLinks"]%>
+    <% img = result["volumeInfo"]["imageLinks"]["thumbnail"] %>
+  <% else %>
+    <% img = "" %>
+  <% end %>
+
+  <% if result["volumeInfo"]["industryIdentifiers"]%>
+    <% if result["volumeInfo"]["industryIdentifiers"][0] %>
+      <% isbn = result["volumeInfo"]["industryIdentifiers"][0]["identifier"] %>
+    <% end %>
+  <% else %>
+    <% isbn = 0 %>
+  <% end %>
+  <div class="col s6 offset-s6">
+    <div class="card horizontal book-info">
+        <div class="card-image book-info__img">
+          <img src="<%= img %>" alt="<%= result["volumeInfo"]["title"] %>">
+        </div>
+      <div class="card-stacked">
+        <div class="card-content">
+          <div class="book-info__title"><%= result["volumeInfo"]["title"]%></div>
+          <div class="book-info__author"><%= result["volumeInfo"]["authors"]%></div>
+          <div class="book-info__isbn10"><%= isbn %></div>
+          <p><%= result["volumeInfo"]["description"] %></p>
+<!--           <a class="book-info__btn btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">add</i></a> -->
+          <%= link_to "/books" ,class: "book-info__btn" ,method: :post, remote: true do %>
+            <div class="btn-floating halfway-fab waves-effect waves-light red">
+              <i class="material-icons">add</i>
+            </div>
+          <% end %>
+        </div>
+        <div class="card-action">
+          <a href="<%= result["volumeInfo"]["infoLink"]%>">詳細を見る</a>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>
+

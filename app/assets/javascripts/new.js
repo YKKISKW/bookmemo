@@ -65,8 +65,9 @@ $(document).on('turbolinks:load' , function(){
 
    $("#book-search-result").on("click", ".book-info__btn" ,function(e){
     e.preventDefault();
-    var title = $(this).parent().find(".card-title").text();
-    var isbn = $(this).parent().attr('id');
+    var title = $(this).parent().find(".book-info__title").text();
+    var isbn = $(this).parent().find(".book-info__isbn10").text();
+    console.log(title);
 
     $.ajax({
       type: 'post',
