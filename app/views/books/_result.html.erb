@@ -24,7 +24,7 @@
           <div class="book-info__isbn10"><%= isbn %></div>
           <p><%= result["volume_info"]["description"] %></p>
 <!--           <a class="book-info__btn btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">add</i></a> -->
-          <%= link_to "/books" ,class: "book-info__btn" ,method: :post, remote: true do %>
+          <%= link_to books_url(book: {title: result["volume_info"]["title"], isbn13: isbn}), class: "book-info__btn" ,method: :post, remote: true do %>
             <div class="btn-floating halfway-fab waves-effect waves-light red">
               <i class="material-icons">add</i>
             </div>
