@@ -31,7 +31,7 @@
           <li><%= link_to "投稿する", "/tweets/new" ,class: "get" %> </li>
           <li><%= link_to "サインアウト", destroy_user_session_path, method: :delete %></li>
         <% else %>
-          <li><%= link_to "ログイン", new_user_session_path, class: 'post' %></li>
+          <li><%= link_to "ログイン", user_line_omniauth_authorize_path, class: 'post' %></li>
           <li><%= link_to "新規登録", new_user_registration_path, class: 'post' %></li>
         <% end %>
           <li><a href="/books"><i class="material-icons">search</i></a></li>
@@ -41,7 +41,6 @@
         </ul>
       </div>
     </nav>
-
     <%= yield %>
   </body>
 </html>
