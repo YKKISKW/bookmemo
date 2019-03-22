@@ -25,6 +25,5 @@
 
 # Ignore master key for decrypting credentials and more.
 /config/master.key
-/.env
+.env
 config/settings.yml
-app/controllers/webhook_controller.rb
