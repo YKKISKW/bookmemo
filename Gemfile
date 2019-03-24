@@ -45,6 +45,7 @@ gem 'devise'
 gem "font-awesome-rails"
 gem 'omniauth-line'
 gem 'dotenv-rails'
+gem 'google-api-client'
 
 
 group :development, :test do
