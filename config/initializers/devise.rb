@@ -256,7 +256,7 @@ Devise.setup do |config|
   # Add a new OmniAuth provider. Check the wiki for more information on setting
   # up on your models and hooks.
   # config.omniauth :github, 'APP_ID', 'APP_SECRET', scope: 'user,public_repo'
-  OAUTH_CONFIG = YAML.load_file("#{Rails.root}/config/settings.yml")[Rails.env].symbolize_keys!
+  # OAUTH_CONFIG = YAML.load_file("#{Rails.root}/config/settings.yml")[Rails.env].symbolize_keys!
   config.omniauth :line,ENV['LINE_LOGIN_CHANNEL_ID'],ENV['LINE_LOGIN_CHANNEL_SECRET']
   # OAUTH_CONFIG[:line]['key'], OAUTH_CONFIG[:line]['secret']
   # ==> Warden configuration
