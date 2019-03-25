@@ -7,11 +7,11 @@
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-    <%= favicon_link_tag('favicon.ico') %>
 
       <style type="text/css" href="./style.css"></style>
    <!-- Compiled and minified CSS -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+<!--   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css"> -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
 <script
@@ -19,29 +19,34 @@
   integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
   crossorigin="anonymous"></script>
   <!-- Compiled and minified JavaScript -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
 
   </head>
 
   <body>
     <nav>
       <div class="nav-wrapper grey darken-3">
-        <a href="/books" class="brand-logo"><i class="material-icons">book</i>BOT de MEMO</a>
-        <ul class="right hide-on-med-and-down">
-        <% if user_signed_in? %>
-          <li><%= link_to "投稿する", "/tweets/new" ,class: "get" %> </li>
-          <li><%= link_to "サインアウト", destroy_user_session_path, method: :delete %></li>
-        <% else %>
-          <li><%= link_to "ログイン", user_line_omniauth_authorize_path, class: 'post' %></li>
-          <li><%= link_to "新規登録", new_user_registration_path, class: 'post' %></li>
+        <%= link_to "" ,data: {target: "slide-out",turbolinks: false},class: "sidenav-trigger show-on-large" do %>
+          <i class="material-icons">menu</i>
         <% end %>
-          <li><a href="/books"><i class="material-icons">search</i></a></li>
-          <li><a href="badges.html"><i class="material-icons">view_module</i></a></li>
-          <li><a href="collapsible.html"><i class="material-icons">refresh</i></a></li>
-          <li><a href="mobile.html"><i class="material-icons">more_vert</i></a></li>
-        </ul>
+        <%= link_to root_path  do %>
+          BOT de MEMO
+        <% end %>
       </div>
     </nav>
+
+    <ul id="slide-out" class="sidenav">
+      <% if user_signed_in? %>
+        <li><%= link_to "投稿する", "/tweets/new" ,class: "get" %> </li>
+        <li><%= link_to "サインアウト", destroy_user_session_path, method: :delete %></li>
+    <% end %>
+      <li><a href="/books"><i class="material-icons">search</i></a></li>
+      <%= link_to books_path do %>
+        <i class="material-icons">view_module</i>
+      <% end %>
+      <li><a href="collapsible.html"><i class="material-icons">refresh</i></a></li>
+      <li><a href="mobile.html"><i class="material-icons">more_vert</i></a></li>
+    </ul>
     <%= yield %>
   </body>
 </html>
