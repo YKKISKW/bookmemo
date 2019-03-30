@@ -4,7 +4,7 @@ Rails.application.routes.draw do
 }
   root 'users#index'
 
-  resources :users, only: [:index, :edit, :update]
+  resources :users, only: [:index, :edit, :update,:show]
   resources :books, only: [:index, :new, :create,:show]
   # do
   #   resources :memos
