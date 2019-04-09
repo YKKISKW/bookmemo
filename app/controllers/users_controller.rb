@@ -3,6 +3,6 @@ class UsersController < ApplicationController
   end
 
   def show
-    binding.pry
+    @books = current_user.book_shelves
   end
 end

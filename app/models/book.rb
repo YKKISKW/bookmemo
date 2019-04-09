@@ -2,6 +2,7 @@ require 'google/apis/books_v1'
 class Book < ApplicationRecord
   has_many :book_shelves
   has_many :users, through: :book_shelves
+  has_many :memos
 
   def self.search_with_google_api(q)
     service = Google::Apis::BooksV1::BooksService.new

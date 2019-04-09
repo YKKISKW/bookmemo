@@ -15,7 +15,8 @@ class WebhookController < ApplicationController
           case event.type
           when Line::Bot::Event::MessageType::Text
 
-            if event['message']['text'] = "exit"
+            case event['message']['text']
+             when "exit"
               session.delete(:selectbook)
               session.delete(:bookinfo)
               session.delete(:userinfo)
@@ -24,7 +25,6 @@ class WebhookController < ApplicationController
                 }
                 client.reply_message(event['replyToken'], message)
             end
-
             if session[:selectbook].present?
               @selectbook = session[:selectbook]
               @userinfo = session[:userinfo]
@@ -41,18 +41,17 @@ class WebhookController < ApplicationController
                 }
                 client.reply_message(event['replyToken'], message)
               end
-            end
-            if session[:bookinfo].present?
+            elsif session[:bookinfo].present?
               book_id = event['message']['text'].to_i
               session[:selectbook] = session[:bookinfo][book_id]
-              # @book = Book.find(book_id)
               message = {type:'text',
                     text:"本を選択しました\n#{session[:selectbook]["title"]}"}
               client.reply_message(event['replyToken'], message)
             end
 
+
             case event['message']['text']
-            when "2"
+            when "0"
               user_id = event['source']['userId']
               booktitle = book_select(user_id)
               session[:title] = booktitle
@@ -64,9 +63,6 @@ class WebhookController < ApplicationController
          end
       }
     head :ok
-    # session[:selectbook] = nil
-    # session[:bookinfo] = nil
-    # session[:userinfo] = nil
   end
 
   def book_select(user_id)
@@ -84,8 +80,8 @@ class WebhookController < ApplicationController
 
   def client
     @client ||= Line::Bot::Client.new { |config|
-      config.channel_secret = ENV['LINE_BOT_KEY']
-      config.channel_token = ENV['LINE_BOT_SECRET']
+      config.channel_secret = ENV['LINE_BOT_SECRET']
+      config.channel_token = ENV['LINE_BOT_KEY']
     }
   end
 end

@@ -1,6 +1,6 @@
 class MemosController < ApplicationController
   def index
-    @memos = Memo.all
+    @memos = current_user.memos.where(book_id:params[:book_id])
   end
 
   def show
