@@ -4,12 +4,10 @@ Rails.application.routes.draw do
 }
   root 'users#index'
 
-  resources :users, only: [:index, :edit, :update]
-  resources :books, only: [:index, :new, :create,:show]
-  # do
-  #   resources :memos
-  # end
-  # get 'books/new'
+  resources :users, only: [:index, :edit, :update,:show]
+  resources :books, only: [:index, :new, :create,:show] do
+    resources :memos,only:[:index]
+  end
   get 'memos/index'
   post 'line/callback'
   post '/callback', to: 'webhook#callback'

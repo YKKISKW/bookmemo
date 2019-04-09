@@ -1,0 +1,27 @@
+<% isbn = user_book.book.isbn13 %>
+<% @result = search_with_google_api("isbn:#{isbn}") %>
+<% result = @result[0] %>
+<% if result["volume_info"]["image_links"]%>
+    <% img = result["volume_info"]["image_links"]["thumbnail"] %>
+  <% else %>
+    <% img = "" %>
+<% end %>
+<div class="mdl-cell mdl-card mdl-shadow--4dp portfolio-card">
+    <div class="mdl-card__media">
+        <img src="<%= img %>" class="article-image">
+    </div>
+    <div class="mdl-card__title">
+        <h2 class="mdl-card__title-text">
+            <%= result["volume_info"]["title"]%>
+        </h2>
+    </div>
+    <div class="mdl-card__supporting-text">
+        <%= result["volume_info"]["description"]%>
+    </div>
+     <br>
+    <div class="mdl-card__actions mdl-card--border">
+        <%= link_to book_memos_path(user_book.book),class: "mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect mdl-button--accent"  do%>
+        メモを見る
+        <% end %>
+    </div>
+</div>

@@ -1,2 +1,9 @@
 <div class="bg_test">
+  <div class="line-login">
+  <% unless user_signed_in? %>
+    <%= link_to (user_line_omniauth_authorize_path),class: "line-login__btn" do %>
+          <%= image_tag( "line_64.png") %>
+    <% end %>
+  <% end %>
+  </div>
 </div>

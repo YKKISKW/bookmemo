@@ -5,6 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable,:omniauthable
   has_many :book_shelves
   has_many :books, through: :book_shelves
+  has_many :memos
 
   # has_many :social_profiles, dependent: :destroy
    def social_profile(provider)
