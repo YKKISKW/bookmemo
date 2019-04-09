@@ -23,7 +23,6 @@ class WebhookController < ApplicationController
               message = {type:'text',
                           text:"終了しました"
                 }
-              binding.pry
                 client.reply_message(event['replyToken'], message)
             end
             if session[:selectbook].present?
