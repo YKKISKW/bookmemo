@@ -17,14 +17,13 @@ class WebhookController < ApplicationController
 
             case event['message']['text']
              when "exit"
-              puts "*****  exit  ***********"
               session.delete(:selectbook)
               session.delete(:bookinfo)
               session.delete(:userinfo)
               message = {type:'text',
                           text:"終了しました"
                 }
-              puts "メッセージ  #{message}"
+              binding.pry
                 client.reply_message(event['replyToken'], message)
             end
             if session[:selectbook].present?
