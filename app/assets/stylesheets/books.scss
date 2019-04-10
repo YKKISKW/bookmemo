@@ -24,23 +24,45 @@
   }
 
   .bg_test {
-      width: 100vw;
-      height: 100vh;
+      width: 100%;
+      height: 0;
       text-align:  center;    /* 文字中央寄せ */
-      // padding:  150px;        /* 余白指定 */
-      // border: solid 2px;/* 枠線指定 */
       background-image:url(book-phone.jpg);
+      padding-top: 66.64%;
       background-repeat: no-repeat;
       background-size: cover;
-      background-attachment: fixed;
-  }
-
-  .line-login{
-    margin-right: 1000px;
-    position: relative;
-    &__btn{
+      background-position: center center;
+      position: relative;
+    @media screen and (min-width:1024px) {
+    .title-text{
+      float: left;
       position: absolute;
-      top: 500px;
+      top:100px;
+      left:60px;
+      color: white;
+      font-family: "Source Sans Pro", Helvetica, Arial, 游ゴシック体, YuGothic, メイリオ, Meiryo, sans-serif;
+      h1{
+        font-size: 60px;
+      }
+    }
+    .line-login{
+      float: left;
+      position: absolute;
+      bottom: 400px;
+      left:60px;
+      &__btn{
+    }
+      img{
+        width: 80%
+      }
+  }
+  }
+  @media(max-width:640px){
+    .line-login{
+      margin-top: 50px;
+      img{
+        width: 60%
+      }
     }
   }
-
+}
