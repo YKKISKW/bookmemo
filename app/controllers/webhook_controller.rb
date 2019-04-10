@@ -8,60 +8,81 @@ class WebhookController < ApplicationController
       unless client.validate_signature(body, signature)
         error 400 do 'Bad Request' end
       end
+# ここから追加
       events = client.parse_events_from(body)
       events.each { |event|
         case event
         when Line::Bot::Event::Message
           case event.type
           when Line::Bot::Event::MessageType::Text
-
-            case event['message']['text']
-             when "exit"
-              session.delete(:selectbook)
-              session.delete(:bookinfo)
-              session.delete(:userinfo)
-              message = {type:'text',
-                          text:"終了しました"
-                }
-                client.reply_message(event['replyToken'], message)
-            end
-            if session[:selectbook].present?
-              @selectbook = session[:selectbook]
-              @userinfo = session[:userinfo]
-              memo = event['message']['text']
-              begin
-                Memo.create!(body:memo,book_id:@selectbook["id"],user_id:@userinfo[0]["id"])
-                message = {type:'text',
-                          text:"メモ『#{memo}』を登録しました！"
-                }
-                client.reply_message(event['replyToken'], message)
-              rescue
-                message = {type:'text',
-                          text:"メモ『#{memo}』の登録に失敗しました"
-                }
-                client.reply_message(event['replyToken'], message)
-              end
-            elsif session[:bookinfo].present?
-              book_id = event['message']['text'].to_i
-              session[:selectbook] = session[:bookinfo][book_id]
-              message = {type:'text',
-                    text:"本を選択しました\n#{session[:selectbook]["title"]}"}
-              client.reply_message(event['replyToken'], message)
-            end
-
-
-            case event['message']['text']
-            when "0"
-              user_id = event['source']['userId']
-              booktitle = book_select(user_id)
-              session[:title] = booktitle
-              message = {type:'text',
-                    text:"本を選択してください\n#{booktitle}"}
-              client.reply_message(event['replyToken'], message)
-            end
-           end
-         end
+            message = {
+              type: 'text',
+              text: event.message['text']
+            }
+            client.reply_message(event['replyToken'], message)
+          when Line::Bot::Event::MessageType::Image, Line::Bot::Event::MessageType::Video
+            response = client.get_message_content(event.message['id'])
+            tf = Tempfile.open("content")
+            tf.write(response.body)
+          end
+        end
       }
+# ここから一時コメントアウト
+#       events = client.parse_events_from(body)
+#       events.each { |event|
+#         case event
+#         when Line::Bot::Event::Message
+#           case event.type
+#           when Line::Bot::Event::MessageType::Text
+
+#             case event['message']['text']
+#              when "exit"
+#               session.delete(:selectbook)
+#               session.delete(:bookinfo)
+#               session.delete(:userinfo)
+#               message = {type:'text',
+#                           text:"終了しました"
+#                 }
+#                 client.reply_message(event['replyToken'], message)
+#             end
+#             if session[:selectbook].present?
+#               @selectbook = session[:selectbook]
+#               @userinfo = session[:userinfo]
+#               memo = event['message']['text']
+#               begin
+#                 Memo.create!(body:memo,book_id:@selectbook["id"],user_id:@userinfo[0]["id"])
+#                 message = {type:'text',
+#                           text:"メモ『#{memo}』を登録しました！"
+#                 }
+#                 client.reply_message(event['replyToken'], message)
+#               rescue
+#                 message = {type:'text',
+#                           text:"メモ『#{memo}』の登録に失敗しました"
+#                 }
+#                 client.reply_message(event['replyToken'], message)
+#               end
+#             elsif session[:bookinfo].present?
+#               book_id = event['message']['text'].to_i
+#               session[:selectbook] = session[:bookinfo][book_id]
+#               message = {type:'text',
+#                     text:"本を選択しました\n#{session[:selectbook]["title"]}"}
+#               client.reply_message(event['replyToken'], message)
+#             end
+
+
+#             case event['message']['text']
+#             when "0"
+#               user_id = event['source']['userId']
+#               booktitle = book_select(user_id)
+#               session[:title] = booktitle
+#               message = {type:'text',
+#                     text:"本を選択してください\n#{booktitle}"}
+#               client.reply_message(event['replyToken'], message)
+#             end
+#            end
+#          end
+#       }
+# ここまで
     head :ok
   end
 
