@@ -1,7 +1,7 @@
-require 'line/bot'
-
 class WebhookController < ApplicationController
+  require 'line/bot'
   protect_from_forgery except: :callback
+
   def callback
       body = request.body.read
       signature = request.env['HTTP_X_LINE_SIGNATURE']
