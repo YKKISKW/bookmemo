@@ -6,11 +6,11 @@
   <% end %>
 
   <% if result["volume_info"]["industry_identifiers"]%>
-    <% if result["volume_info"]["industry_identifiers"][0] %>
+    <% if result["volume_info"]["industry_identifiers"][1] %>
+      <% isbn = result["volume_info"]["industry_identifiers"][1]["identifier"] %>
+    <% else %>
       <% isbn = result["volume_info"]["industry_identifiers"][0]["identifier"] %>
     <% end %>
-  <% else %>
-    <% isbn = 0 %>
   <% end %>
   <div class="col s6 offset-s6">
     <div class="card horizontal book-info">
@@ -23,7 +23,7 @@
           <div class="book-info__author"><%= result["volume_info"]["authors"]%></div>
           <div class="book-info__isbn10"><%= isbn %></div>
           <p><%= result["volume_info"]["description"] %></p>
-          <%= link_to books_url(book: {title: result["volume_info"]["title"], isbn13: isbn}), class: "book-info__btn" ,method: :post, remote: true do %>
+          <%= link_to books_url(book: {title: result["volume_info"]["title"], isbn13: isbn}), class: "book-info__btn" ,method: :post, remote: true ,data: { confirm: '本を登録しますか？'} do %>
             <div class="btn-floating halfway-fab waves-effect waves-light red">
               <i class="material-icons">add</i>
             </div>

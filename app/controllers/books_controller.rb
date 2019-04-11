@@ -25,6 +25,12 @@ class BooksController < ApplicationController
     end
   end
 
+  def destroy
+    book = current_user.book_shelves.where(book_id:params[:id])
+    book[0].destroy
+    redirect_to user_path(current_user.id)
+  end
+
   private
 
   def book_params
