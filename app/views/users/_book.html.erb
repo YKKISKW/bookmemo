@@ -11,17 +11,17 @@
         <img src="<%= img %>" class="article-image">
     </div>
     <div class="mdl-card__title">
-        <h2 class="mdl-card__title-text">
+        <p class="mdl-card__title-text">
             <%= result["volume_info"]["title"]%>
-        </h2>
-    </div>
-    <div class="mdl-card__supporting-text">
-        <%= result["volume_info"]["description"]%>
+        </p>
     </div>
      <br>
     <div class="mdl-card__actions mdl-card--border">
         <%= link_to book_memos_path(user_book.book),class: "mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect mdl-button--accent"  do%>
         メモを見る
+        <% end %>
+        <%= link_to book_path(user_book.book),method: :delete,data: { confirm: '本当に削除しますか？' },class: "mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect mdl-button--accent"  do%>
+        削除
         <% end %>
     </div>
 </div>

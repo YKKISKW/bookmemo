@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   root 'users#index'
 
   resources :users, only: [:index, :edit, :update,:show]
-  resources :books, only: [:index, :new, :create,:show] do
+  resources :books do
     resources :memos,only:[:index]
   end
   get 'memos/index'

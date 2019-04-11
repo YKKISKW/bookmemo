@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_03_16_102826) do
+ActiveRecord::Schema.define(version: 2019_04_11_112822) do
 
   create_table "book_shelves", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "book_id"
@@ -22,8 +22,7 @@ ActiveRecord::Schema.define(version: 2019_03_16_102826) do
   end
 
   create_table "books", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.bigint "isbn13"
-    t.bigint "isbn10"
+    t.string "isbn13"
     t.text "title", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
