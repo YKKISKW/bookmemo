@@ -37,7 +37,7 @@ class WebhookController < ApplicationController
                     reply = "本が一件も登録されていません。\n本の登録をお願いします！"
                   end
                 else
-                  reply = "ご利用ありがとうございます！\nユーザー登録をお願いいたします。\nhttps://29a5ca24.ngrok.io"
+                  reply = "ご利用ありがとうございます！\nユーザー登録をお願いいたします。\nhttps://botdememo.herokuapp.com"
                 end
                   message = {type:'text',
                               text:reply}
