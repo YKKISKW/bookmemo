@@ -1,9 +1,14 @@
-<main class="mdl-layout__content">
-    <div class="site-content">
-        <div class="container">
-            <div class="mdl-grid site-max-width">
-                <%= render :partial => "book",:collection => @books,:as => "user_book"%>
+<div class="container">
+  <div class="section">
+    <div class="row">
+        <div class="col s12">
+            <div class="col s12">
+                <h3 class="title">
+                    <%= "#{current_user.name}さんの本棚"%>
+                </h3>
             </div>
+            <%= render :partial => "book",:collection => @books,:as => "user_book"%>
         </div>
     </div>
-</main>
+  </div>
+</div>

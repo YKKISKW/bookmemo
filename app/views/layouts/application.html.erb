@@ -39,20 +39,20 @@
 
     <ul id="slide-out" class="sidenav">
       <% if user_signed_in? %>
-        <li><%= link_to "投稿する", "/tweets/new" ,class: "get" %> </li>
         <li><%= link_to "サインアウト", destroy_user_session_path, method: :delete %></li>
         <li>
           <%= link_to user_path(current_user) do %>
             <i class="material-icons left">person</i>
+            <%= "#{current_user.name}さんの本棚" %>
           <% end %>
         </li>
     <% end %>
-      <li><a href="/books"><i class="material-icons">search</i></a></li>
-      <%= link_to books_path do %>
-        <i class="material-icons">view_module</i>
-      <% end %>
-      <li><a href="collapsible.html"><i class="material-icons">refresh</i></a></li>
-      <li><a href="mobile.html"><i class="material-icons">more_vert</i></a></li>
+      <li>
+        <%= link_to books_path do %>
+          <i class="material-icons">search</i>
+          本を探す
+        <% end %>
+      </li>
     </ul>
     <%= yield %>
   </body>

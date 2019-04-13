@@ -1,17 +1,17 @@
-<table class="table">
-  <thead>
-    <tr>
-      <th class="h4">memo</th>
-    </tr>
-  </thead>
-  <tbody>
-    <%@memos.each do|memo|%>
-    <tr>
-      <td>
-      <%=memo.body%>
-      </td>
-    </tr>
-    <%end%>
-  </tbody>
-</table>
-
+<div class="container">
+  <div class="section">
+    <div class="row">
+        <div class="col s12">
+            <div class="col s12">
+                <h5 class="title">
+                    <%= "#{@book_title}のメモ一覧"%>
+                </h5>
+            </div>
+            <%= render :partial => "memo",:collection => @memos,:as => "memo"%>
+            <div class="col s12">
+              <%= paginate(@memos) %>
+            </div>
+        </div>
+    </div>
+  </div>
+</div>
