@@ -1,16 +1,18 @@
-<div class="row">
-    <div class="col s12 m6">
-      <div class="row">
-        <div class="input-field col s12">
-            <%= form_with url: "/books/new" , :method => 'get' do |f| %>
-              <%= f.text_field :form_word ,class: "autocomplete books-input", placeholder: 'タイトル・著者で検索' %>
+<div class="container">
+  <div class="section">
+    <div class="row">
+        <div class="col s12">
+            <div class="col s12">
+                <%= form_with url: "/books/new" , :method => 'get' do |f| %>
+                  <%= f.text_field :form_word ,class: "books-input", placeholder: 'タイトル・著者で検索' %>
                   <%= button_tag type: "submit" do %>
-                  <i class="material-icons">search</i>
-              <% end %>
-            <% end %>
+                    <i class="material-icons prefix">search</i>
+                  <% end %>
+                <% end %>
+            </div>
+            <div id="book-search-result">
+            </div>
         </div>
-      </div>
     </div>
-</div>
-<div class="row" id="book-search-result">
+  </div>
 </div>

@@ -46,6 +46,7 @@ gem "font-awesome-rails"
 gem 'omniauth-line'
 gem 'dotenv-rails'
 gem 'google-api-client'
+gem 'kaminari'
 
 
 group :development, :test do

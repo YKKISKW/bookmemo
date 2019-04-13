@@ -6,7 +6,7 @@ Rails.application.routes.draw do
 
   resources :users, only: [:index, :edit, :update,:show]
   resources :books do
-    resources :memos,only:[:index]
+    resources :memos,only:[:index,:destroy]
   end
   get 'memos/index'
   post 'line/callback'

@@ -1,0 +1,14 @@
+<div class="col s12 m6">
+  <div class="card yellow lighten-4">
+    <div class="card-content gray-text">
+      <p>
+        <%= memo.body %>
+      </p>
+    </div>
+    <div class="card-action">
+      <%= link_to book_memo_path(memo.book.id,memo.id) ,method: :delete do %>
+        削除する
+      <% end %>
+    </div>
+  </div>
+</div>

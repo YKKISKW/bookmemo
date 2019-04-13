@@ -6,22 +6,25 @@
   <% else %>
     <% img = "" %>
 <% end %>
-<div class="mdl-cell mdl-card mdl-shadow--4dp portfolio-card">
-    <div class="mdl-card__media">
-        <img src="<%= img %>" class="article-image">
-    </div>
-    <div class="mdl-card__title">
-        <p class="mdl-card__title-text">
-            <%= result["volume_info"]["title"]%>
-        </p>
-    </div>
-     <br>
-    <div class="mdl-card__actions mdl-card--border">
+<div class="col s12 m6 l4">
+    <div class="card book-info">
+        <div class="card-image book-info__img">
+          <img src="<%= img %>" alt="<%= result["volume_info"]["title"] %>" width="128" height="188">
+        </div>
+      <div class="card-stacked">
+        <div>
+            <p>
+                <%= result["volume_info"]["title"]%>
+            </p>
+        </div>
+        <div class="card-action">
         <%= link_to book_memos_path(user_book.book),class: "mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect mdl-button--accent"  do%>
         メモを見る
         <% end %>
         <%= link_to book_path(user_book.book),method: :delete,data: { confirm: '本当に削除しますか？' },class: "mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect mdl-button--accent"  do%>
         削除
         <% end %>
+        </div>
+      </div>
     </div>
-</div>
+  </div>
