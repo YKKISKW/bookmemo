@@ -6,7 +6,8 @@
       </p>
     </div>
     <div class="card-action">
-      <%= link_to book_memo_path(memo.book.id,memo.id) ,method: :delete do %>
+      <%= l memo.created_at , format: :short %>
+      <%= link_to book_memo_path(memo.book.id,memo.id) ,method: :delete ,class: "memo_delete" do %>
         削除する
       <% end %>
     </div>

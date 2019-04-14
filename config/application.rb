@@ -9,6 +9,8 @@ Bundler.require(*Rails.groups)
 module Bookmemo
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
+    config.active_record.default_timezone = :local
+    config.i18n.default_locale = :ja
     config.load_defaults 5.2
     config.paths.add 'lib', eager_load: true
     Rails.application.config.assets.paths << Rails.root.join('vendor', 'fonts')
