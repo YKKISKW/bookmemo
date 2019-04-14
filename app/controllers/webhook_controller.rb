@@ -67,11 +67,9 @@ class WebhookController < ApplicationController
                   client.reply_message(event['replyToken'], message)
              else
                 if session[:selectbook].present?
-                  @selectbook = session[:selectbook]
-                  @userinfo = session[:userinfo]
                   memo = event['message']['text']
                   begin
-                    Memo.create!(body:memo,book_id:@selectbook["id"],user_id:@userinfo[0]["id"])
+                    Memo.create!(body:memo,book_shelf_id:session[:selectbook]["BS"])
                     message = {type:'text',
                               text:"メモ『#{memo}』を登録しました！"
                     }
@@ -99,18 +97,14 @@ class WebhookController < ApplicationController
   def book_select(user_id)
     session[:userinfo] = User.where(uid:user_id)
     @books = BookShelf.where(user_id:session[:userinfo].ids)
-    bookinfo = []
-    @books.each do |book|
-      bookinfo << book.book
-      session[:bookinfo] = bookinfo
-    end
-      booktitle = bookinfo.map.with_index{|a, index| {
+    session[:bookinfo] = @books.map{|b| b.book.attributes.merge(BS:b.id)}
+    booktitle = session[:bookinfo].map.with_index{|a, index| {
                                                         "type": "button",
                                                         "style": "link",
                                                         "height": "sm",
                                                         "action": {
                                                           "type":"message",
-                                                          "label":"#{index + 1} : #{a.title}",
+                                                          "label":"#{index + 1} : #{a["title"]}",
                                                           "text": "#{index + 1}"
                                                           },
                                                           "flex": 7

@@ -10,14 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_04_11_112822) do
+ActiveRecord::Schema.define(version: 2019_04_14_090753) do
 
   create_table "book_shelves", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "book_id"
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "status", default: 0, null: false
     t.index ["book_id"], name: "index_book_shelves_on_book_id"
+    t.index ["user_id", "book_id"], name: "unique_user_book", unique: true
     t.index ["user_id"], name: "index_book_shelves_on_user_id"
   end
 
@@ -33,10 +35,8 @@ ActiveRecord::Schema.define(version: 2019_04_11_112822) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "page"
-    t.bigint "user_id"
-    t.bigint "book_id"
-    t.index ["book_id"], name: "index_memos_on_book_id"
-    t.index ["user_id"], name: "index_memos_on_user_id"
+    t.bigint "book_shelf_id"
+    t.index ["book_shelf_id"], name: "index_memos_on_book_shelf_id"
   end
 
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -58,6 +58,5 @@ ActiveRecord::Schema.define(version: 2019_04_11_112822) do
 
   add_foreign_key "book_shelves", "books"
   add_foreign_key "book_shelves", "users"
-  add_foreign_key "memos", "books"
-  add_foreign_key "memos", "users"
+  add_foreign_key "memos", "book_shelves"
 end
