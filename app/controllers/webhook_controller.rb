@@ -30,7 +30,7 @@ class WebhookController < ApplicationController
                 user_id = event['source']['userId']
                 if User.where(uid:user_id).exists? #ユーザー登録済みチェック
                   booktitle = book_select(user_id)
-                  unless booktitle == "" #本の登録チェック
+                  unless booktitle.empty? #本の登録チェック
                     session[:title] = booktitle
                     message = {
                             "type": "flex",
@@ -55,7 +55,7 @@ class WebhookController < ApplicationController
                             }
                           }
                   else
-                    reply = "本が一件も登録されていません。\n本の登録をお願いします！"
+                    reply = "本が一件も登録されていません。\n本の登録をお願いします！\nhttps://botdememo.herokuapp.com/books"
                     message = {type:'text',
                               text:reply}
                   end
