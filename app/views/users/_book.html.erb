@@ -18,10 +18,10 @@
             </p>
         </div>
         <div class="card-action">
-        <%= link_to book_memos_path(user_book.book),class: "mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect mdl-button--accent"  do%>
+        <%= link_to book_shelf_memos_path(user_book),class: "mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect mdl-button--accent"  do%>
         メモを見る
         <% end %>
-        <%= link_to book_path(user_book.book),method: :delete,data: { confirm: '本当に削除しますか？' },class: "mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect mdl-button--accent"  do%>
+        <%= link_to book_shelf_path(user_book),method: :delete,data: { confirm: '本当に削除しますか？' },class: "mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect mdl-button--accent"  do%>
         削除
         <% end %>
         </div>

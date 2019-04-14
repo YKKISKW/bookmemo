@@ -22,10 +22,21 @@
           <div class="book-info__title"><%= result["volume_info"]["title"]%></div>
           <div class="book-info__author"><%= result["volume_info"]["authors"]%></div>
           <div class="book-info__isbn10"><%= isbn %></div>
-          <%= link_to books_url(book: {title: result["volume_info"]["title"], isbn13: isbn}), class: "book-info__btn" ,method: :post ,data: { confirm: '本を登録しますか？'} do %>
-            <div class="btn-floating halfway-fab waves-effect waves-light red">
-              <i class="material-icons">add</i>
-            </div>
+          <% if user_signed_in? %>
+            <% book = Book.where(isbn13: isbn) %>
+            <% unless BookShelf.where(book_id:book.ids,user_id:current_user.id).exists?%>
+              <%= link_to book_shelves_url(book: {title: result["volume_info"]["title"], isbn13: isbn}), class: "book-info__btn" ,method: :post ,data: { confirm: '本を登録しますか？'} do %>
+                <div class="btn-floating halfway-fab waves-effect waves-light red">
+                  <i class="material-icons">add</i>
+                </div>
+              <% end %>
+            <% end %>
+          <% else %>
+            <%= link_to book_shelves_url(book: {title: result["volume_info"]["title"], isbn13: isbn}), class: "book-info__btn" ,method: :post ,data: { confirm: '本を登録しますか？'} do %>
+              <div class="btn-floating halfway-fab waves-effect waves-light red">
+                <i class="material-icons">add</i>
+              </div>
+            <% end %>
           <% end %>
         </div>
         <div class="card-action">
