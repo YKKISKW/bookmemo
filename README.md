@@ -1,24 +1,32 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## アプリ名
+Bot de Memo📖📱
 
-Things you may want to cover:
+## 概要
+- 事前にwebアプリで本を登録しておくと、移動中の読書でもLINEBOTで簡単にメモができるアプリです。
 
-* Ruby version
+## なぜ作ろうと思ったか
+- きっかけは電車で読書中にメモ取りたいという瞬間が何度かあり、とっさにペンを出してメモを取れなかったことです。
+- 一人のLINEグループを作ってサクッとメモできるように、LINEBOTでメモできればと思いました。
+- 本にメモを書いても読書の感想を書く時くらいにしか見返さないので、メモ自体を管理できればと思いました。
+- メモが蓄積されたらビッグデータにもなるのでは？と思いました。
 
-* System dependencies
+## 使い方
+<a href="https://line.me/R/ti/p/%40bit9077z"><img height="36" border="0" alt="友だち追加" src="https://scdn.line-apps.com/n/line_add_friends/btn/ja.png"></a>
+まずは友達追加してください！
 
-* Configuration
+- 友達登録後、ユーザー登録をします。https://botdememo.herokuapp.com/
+- ログイン後、本を登録します（赤い"➕"ボタンをクリック！)https://botdememo.herokuapp.com/books
+- Linebotに戻り、メニューの「メモする」を押してください
+- 読書中の本一覧をタップして選択してください
+- 本が選択されたら、LINEBOTにメッセージを送信する（メモする）ことでwebアプリに自動で反映されます。
+- メモはwebアプリから確認してください（サイドメニューの●●さんの本棚）
 
-* Database creation
+## 今後実装したいこと
+- ユーザー相互フォロー機能
+- 新着メモの表示
+- メモのいいね機能
+- メモをSNSで共有機能
+- メモの検索機能
 
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
